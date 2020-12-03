@@ -166,7 +166,7 @@ module.exports = (pool)=>{
 }
 ```
 ## CRUD
-### Router GET
+* ### GET
 ```js
 router.get('/', function(req, res, next) {
     pool.query('SELECT * FROM siswa', (err, data) => {
@@ -175,7 +175,7 @@ router.get('/', function(req, res, next) {
     })
   });
 ```
-### [Router POST](https://node-postgres.com/features/queries)
+* ### [POST](https://node-postgres.com/features/queries)
 ```js
 const text = 'INSERT INTO users(name, email) VALUES($1, $2) RETURNING *'
 const values = ['brianc', 'brian.m.carlson@gmail.com']
@@ -204,7 +204,7 @@ router.post('/', function (req, res, next) {
     })
   })
 ```
-### Router delete
+* ### delete
 ```js
 router.delete('/:id', function (req, res) {
     pool.query('DELETE FROM siswa WHERE id = $1',[parseInt(req.params.id)], (err, data) => {
