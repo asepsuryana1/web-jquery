@@ -62,10 +62,10 @@ Type "help" for help.
 postgres=# 
 ```
 
-### *  nampilin database ```\l```
+### nampilin database ```\l```
 
 ```bash
-postgres=# \l
+postgres=# \l   \q ---> for exit
 
                                   List of databases
    Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
@@ -75,13 +75,17 @@ postgres=# \l
  jwtdb     | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
  ormdb     | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
  postgres  | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
- siswaDB   | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
  template0 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
            |          |          |             |             | postgres=CTc/postgres
  template1 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
            |          |          |             |             | postgres=CTc/postgres
-(8 rows)
-
+(7 rows)
 ```
+
+### create database ```CREATE DATABASE database_name```
+```bash
+postgres=# create database siswadb;
+```
+
 
 
