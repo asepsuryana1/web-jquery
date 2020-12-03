@@ -218,6 +218,37 @@ router.get('/', function(req, res, next) {
     })
   });
 ```
+### [Router POST](https://node-postgres.com/features/queries)
+```js
+const text = 'INSERT INTO users(name, email) VALUES($1, $2) RETURNING *'
+const values = ['brianc', 'brian.m.carlson@gmail.com']
+// callback
+client.query(text, values, (err, res) => {
+  if (err) {
+    console.log(err.stack)
+  } else {
+    console.log(res.rows[0])
+    // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+  }
+})
+
+//-----------------------------------------------------------------------
+
+router.post('/', function (req, res, next) {
+    const text = 'INSERT INTO siswa(nama, umur, isboolean) VALUES($1, $2, $3) '
+    const values = [req.body.nama, parseInt(req.body.umur), JSON.parse(req.body.isboolean)]
+    // callback
+    pool.query(text, values, (err, data) => {
+      if (err) {
+        return res.status(500).send(err)
+      } else {
+        res.status(200).json(data)
+        // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+      }
+    })
+  })
+```
+
 
 
 
