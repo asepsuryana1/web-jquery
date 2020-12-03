@@ -100,6 +100,75 @@ postgres=# create database siswadb;
 ```bash 
 $ npm install pg -S
 ```
+* [Documentations](https://node-postgres.com/)
+```js
+const { Pool, Client } = require('pg')
+const pool = new Pool({
+  user: 'dbuser',
+  host: 'database.server.com',
+  database: 'mydb',
+  password: 'secretpassword',
+  port: 3211,
+})
+pool.query('SELECT NOW()', (err, res) => {
+  console.log(err, res)
+  pool.end()
+})
+```
+* app.js
+```js
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+
+var app = express();
+
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'siswadb',
+  password: 'kucing',
+  port: 5432,
+})
+pool.query('SELECT NOW()', (err, res) => {
+  console.log(err, res)
+  pool.end()
+})
+```
+try run ```$ npm run dev```
+
+shoulbe :
+```bash
+[nodemon] restarting due to changes...
+[nodemon] starting `node ./bin/www`
+undefined Result {
+  command: 'SELECT',
+  rowCount: 1,
+  oid: null,
+  rows: [ { now: 2020-12-03T07:15:39.301Z } ],
+  fields:
+   [ Field {
+       name: 'now',
+       tableID: 0,
+       columnID: 0,
+       dataTypeID: 1184,
+       dataTypeSize: 8,
+       dataTypeModifier: -1,
+       format: 'text' } ],
+  _parsers: [ [Function: parseDate] ],
+  _types:
+   TypeOverrides {
+     _types:
+      { getTypeParser: [Function: getTypeParser],
+        setTypeParser: [Function: setTypeParser],
+        arrayParser: [Object],
+        builtins: [Object] },
+     text: {},
+     binary: {} },
+  RowCtor: null,
+  rowAsArray: false }
+```
+
+
 
 
 
