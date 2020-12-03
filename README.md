@@ -86,6 +86,20 @@ postgres=# \l   \q ---> for exit
 ```bash
 postgres=# create database siswadb;
 ```
+#### create table siswa 
+** pgAdmin
+*** id serial primary key
+*** nama character variying
+*** umur integer
+*** isboolean boolean
+
+## connecting to database
+* [install libarary pg](https://www.npmjs.com/package/pg)
+```bash $ npm install pg -S
+```
+
+
+
 
 
 
