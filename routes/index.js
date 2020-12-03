@@ -6,7 +6,7 @@ module.exports = (pool) => {
   router.get('/', function (req, res) {
     pool.query('SELECT * FROM siswa', (err, data) => {
       if (err) return res.send(err)
-      res.json(data.rows)
+      res.json(data)
     })
   });
 
@@ -23,6 +23,15 @@ module.exports = (pool) => {
       }
     })
   })
+
+  router.delete('/:id', function (req, res) {
+    pool.query('DELETE FROM siswa WHERE id = $1',[parseInt(req.params.id)], (err, data) => {
+      if (err) return res.send(err)
+      res.json(data)
+    })
+  });
+
+
 
   return router;
 }
