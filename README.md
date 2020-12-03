@@ -89,10 +89,13 @@ postgres=# create database siswadb;
 #### create table siswa 
 
 * pgAdmin
-* id serial primary key
-* nama character variying
-* umur integer
-* isboolean boolean
+
+| Name       | Data type          | Not NULL |Primary key  |
+|------------|--------------------|----------|-------------|
+| id         | serial             | yes      |yes          |
+| nama       | character varying  |          |             |
+| umur       | integer            |          |             |
+| isboolean  | boolean            |          |             | 
 
 ## connecting to database
 * [install libarary pg](https://www.npmjs.com/package/pg)
