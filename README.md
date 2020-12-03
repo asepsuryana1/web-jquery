@@ -229,6 +229,28 @@ router.put('/:id', function (req, res) {
     })
   });
 ```
+# VIEWS  use JQUERY
+* ## [jquery-3.5.1.min.js](https://code.jquery.com/jquery-3.5.1.min.js)
+* ### place into ./public/javascript 
+```html
+<script type= 'text/javascript' src= '/javascript/jquery-3.5.1.min.js'></script>
+```
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type= 'text/javascript' src= '/javascript/jquery-3.5.1.min.js'></script>
+  </head>
+  <body>
+    <h1></h1>
+    <p>Welcome to </p>
+  </body>
+</html>
+```
+
+
 
 
 
