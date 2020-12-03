@@ -134,9 +134,9 @@ pool.query('SELECT NOW()', (err, res) => {
   pool.end()
 })
 ```
-try run ```$ npm run dev```
+#### try run ```$ npm run dev```
 
-shoulbe :
+#### shoulbe :
 ```bash
 [nodemon] restarting due to changes...
 [nodemon] starting `node ./bin/www`
@@ -166,6 +166,44 @@ undefined Result {
      binary: {} },
   RowCtor: null,
   rowAsArray: false }
+```
+
+#### make router pool
+##### app.js
+```js
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+const { Pool} = require('pg')
+
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'siswadb',
+  password: 'kucing',
+  port: 5432,
+})
+
+var indexRouter = require('./routes/index')(pool);
+```
+##### router index.js
+```js
+var express = require('express');
+var router = express.Router();
+
+/* GET home page. */
+module.exports = (pool)=>{
+  router.get('/', function(req, res, next) {
+    pool.query('SELECT NOW()', (err, res) => {
+      console.log(err, res)
+      pool.end()
+    })
+  });
+  
+   return router;
+}
 ```
 
 
