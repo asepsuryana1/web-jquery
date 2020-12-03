@@ -205,6 +205,17 @@ module.exports = (pool)=>{
    return router;
 }
 ```
+## CRUD
+### Router GET
+```js
+router.get('/', function(req, res, next) {
+    pool.query('SELECT * FROM siswa', (err, data) => {
+    if (err) return res.send(err) 
+    res.json(data.rows)
+    })
+  });
+```
+
 
 
 
