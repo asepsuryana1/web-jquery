@@ -249,6 +249,51 @@ router.put('/:id', function (req, res) {
   </body>
 </html>
 ```
+```html
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>nama</th>
+        <th>umur</th>
+        <th>status</th>
+        <th>actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+```
+
+* ### Get loadData
+```html
+  <script type='text/javascript'>
+    const API_URL = ("http://localhost:3000/siswa", "http://m.localhost:3000/siswa")
+    $(document).ready(function () {
+      loadData();
+    });
+    const loadData = () => {
+      $.ajax({
+        method: "GET",
+        url: API_URL,
+        dataType: "json"
+      })
+        .done(function (data) {
+          let html = '';
+          data.forEach((item) => {
+            html += `<tr>
+              <td>${item.id}</td>
+              <td>${item.nama}</td>
+              <td>${item.umur}</td>
+              <td>${item.isboolean}</td>
+              <td><button>EDIT</button>  <button>DELETE</button></td>
+              </tr>`
+          })
+          $('table tbody').html(html)
+        });
+    }
+  </script>
+```
 
 
 

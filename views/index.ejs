@@ -46,17 +46,10 @@
 
 
   <script type='text/javascript'>
-
-
-
-    const API_URL = ("http://localhost:3000/siswa","http://m.localhost:3000/siswa")
-
+    const API_URL = ("http://localhost:3000/siswa", "http://m.localhost:3000/siswa")
     $(document).ready(function () {
-
       loadData();
-
     });
-
     const loadData = () => {
       $.ajax({
         method: "GET",
@@ -72,15 +65,11 @@
               <td>${item.umur}</td>
               <td>${item.isboolean}</td>
               <td><button>EDIT</button>  <button>DELETE</button></td>
-
-
               </tr>`
           })
           $('table tbody').html(html)
         });
-
     }
-
   </script>
 </body>
 
