@@ -1,8 +1,73 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image:url("../images/simon.jpg");
+  background-repeat: no-repeat;
+  background-size: 1920px, 1212px  auto;
+  background-attachment: fixed;
+  padding: 100px;
+  font: 24px "Lucida Grande", Helvetica, Arial, sans-serif, black;
+  
 }
 
 a {
-  color: #00B7FF;
+  color: hsl(76, 100%, 50%);
 }
+
+h1 {
+  color: #0d4b46;
+  font: 45px;
+  text-align: center;
+}
+table {
+  border: 3px solid hsl(0, 20%, 22%);
+  border-radius: 10px;
+  width: 60%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  }
+thead {
+  background-color: hsl(180, 6%, 42%);
+}
+
+th {
+  padding: 18px  
+}
+td {
+  text-align: center;
+  padding: 12px;
+  background-color: white;
+}
+
+input[type=text]
+,[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  width: 55%;  
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
