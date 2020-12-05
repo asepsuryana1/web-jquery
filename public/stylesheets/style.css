@@ -39,7 +39,8 @@ td {
 }
 
 input[type=text]
-,[type=number], select {
+,[type=number],
+[type=boolean], select {
   width: 100%;
   padding: 12px 20px;
   display: inline-block;
