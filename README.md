@@ -295,7 +295,7 @@ router.put('/:id', function (req, res) {
   </script>
 ```
 * ### POST saveData
-```html
+```js
  // -- event listener
 
       $("#siswa-form").submit((event)=>{
@@ -304,7 +304,7 @@ router.put('/:id', function (req, res) {
       })
     });
 ```
-```html
+```js
  const saveData = () => {
         $.ajax({
         method: "POST",
