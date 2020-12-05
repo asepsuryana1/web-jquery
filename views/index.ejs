@@ -58,8 +58,12 @@
         event.preventDefault();
         saveData();
       })
+
+      $('table tbody').on('click', '.btn-delete',(event)=>{
+        removeData(event.currentTarget.attributes.dataid.value);
+      })
     });
-    
+
     const loadData = () => {
       $.ajax({
         method: "GET",
@@ -73,8 +77,8 @@
               <td>${item.id}</td>
               <td>${item.nama}</td>
               <td>${item.umur}</td>
-              <td>${item.isboolean}</td>
-              <td><button>EDIT</button>  <button>DELETE</button></td>
+              <td>${item.isboolean ? "Menikah" : "jomlo"}</td>
+              <td><button>EDIT</button>          <button class= 'btn-delete' dataid=${item.id}>DELETE</button></td>
               </tr>`
           })
           $('table tbody').html(html)
@@ -89,7 +93,23 @@
       })
         .done(function (data) {
           loadData()
+          $("#siswa-form").trigger("reset")
 
+        })
+        .fail(function (err) {
+          console.log('error', err);
+
+        })
+      }
+
+      const removeData = (id) => {
+        $.ajax({
+        method: "DELETE",
+        url: `${API_URL}/${id}`,
+        dataType: "json"
+      })
+        .done(function (data) {
+          loadData()
         })
         .fail(function (err) {
           console.log('error', err);
