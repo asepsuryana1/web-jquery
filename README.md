@@ -322,6 +322,37 @@ router.put('/:id', function (req, res) {
         })
       }
 ```
+* ### DELETE removeData
+
+* ##### add class id
+```ejs
+<button class= 'btn-delete' dataid=${item.id}>DELETE</button></td>
+```
+* ##### declare function
+```js
+  const removeData = (id) => {
+        $.ajax({
+        method: "DELETE",
+        url: `${API_URL}/${id}`,
+        dataType: "json"
+      })
+        .done(function (data) {
+          loadData()
+        })
+        .fail(function (err) {
+          console.log('error', err);
+
+        })
+      }
+```
+* ##### event click
+```js
+$('table tbody').on('click', '.btn-delete',(event)=>{
+        removeData(event.currentTarget.attributes.dataid.value);
+      })
+```
+
+
 
 
 
