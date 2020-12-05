@@ -294,7 +294,34 @@ router.put('/:id', function (req, res) {
     }
   </script>
 ```
+* ### POST saveData
+```html
+ // -- event listener
 
+      $("#siswa-form").submit((event)=>{
+        event.preventDefault();
+        saveData();
+      })
+    });
+```
+```html
+ const saveData = () => {
+        $.ajax({
+        method: "POST",
+        url: API_URL,
+        dataType: "json",
+        data: {nama: $('#nama').val(), umur: $("#umur").val(), isboolean: $('#isboolean').val()}
+      })
+        .done(function (data) {
+          loadData()
+
+        })
+        .fail(function (err) {
+          console.log('error', err);
+
+        })
+      }
+```
 
 
 
