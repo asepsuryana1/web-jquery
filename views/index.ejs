@@ -62,6 +62,10 @@
       $('table tbody').on('click', '.btn-delete',(event)=>{
         removeData(event.currentTarget.attributes.dataid.value);
       })
+
+      $('table tbody').on('click', '.btn-edit',(event)=>{
+        showData(event.currentTarget.attributes.dataid.value);
+      })
     });
 
     const loadData = () => {
@@ -78,7 +82,7 @@
               <td>${item.nama}</td>
               <td>${item.umur}</td>
               <td>${item.isboolean ? "Menikah" : "jomlo"}</td>
-              <td><button>EDIT</button> <button class= 'btn-delete' dataid=${item.id}>DELETE</button></td>
+              <td><button class= 'btn-edit' dataid=${item.id}>EDIT</button> <button class= 'btn-delete' dataid=${item.id}>DELETE</button></td>
               </tr>`
           })
           $('table tbody').html(html)
@@ -91,7 +95,7 @@
         dataType: "json",
         data: {nama: $('#nama').val(), umur: $("#umur").val(), isboolean: $('#isboolean').val()}
       })
-        .done(function (data) {
+        .done(function () {
           loadData()
           $("#siswa-form").trigger("reset")
 
@@ -108,10 +112,31 @@
         url: `${API_URL}/${id}`,
         dataType: "json"
       })
-        .done(function (data) {
+        .done(function () {
           loadData()
         })
         .fail(function (err) {
+          console.log('error', err);
+
+        })
+      }
+
+      const showData = (id) => {
+        $.ajax({
+        method: "GET",
+        url: `${API_URL}/${id}`,
+        dataType: "json"
+      
+      })
+        .done(function (rows) {
+          $('#id').val(rows.id)
+          $('#siswa-form #nama').val(rows.nama)
+          $('#siswa-form #umur').val(rows.umur) 
+          $('#siswa-form #isboolean').val(rows.isboolean)
+         
+        
+           
+          }).fail(function (err) {
           console.log('error', err);
 
         })

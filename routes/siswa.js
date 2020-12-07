@@ -10,6 +10,14 @@ module.exports = (pool) => {
         })
     });
 
+    router.get('/:id', function (req, res) {
+        pool.query('SELECT * FROM siswa where id = $1', [req.params.id], (err, data) => {
+            if (err) return res.send(err)
+            if (data.rows.length == 0) return res.json({err: true, message: "data tidak ditemukan "})
+            res.json(data.rows[0])
+        })
+    });
+
     router.post('/', function (req, res, next) {
         const text = 'INSERT INTO siswa(nama, umur, isboolean) VALUES($1, $2, $3) '
         const values = [req.body.nama, parseInt(req.body.umur), JSON.parse(req.body.isboolean)]
