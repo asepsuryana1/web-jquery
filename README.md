@@ -354,13 +354,38 @@ router.put('/:id', function (req, res) {
       }
 ```
 * ### UPDATE updateData
+
 * ##### event click
 ```js
-$('#edit-form').on('click', '.btn-update', (event) => {
-        event.preventDefault()
-        updateData(event.currentTarget.attributes.dataid.value);
+$('table tbody').on('click', '.btn-edit', (event) => {
+        showData(event.currentTarget.attributes.dataid.value);
       })
 ```
+
+* #### show data first
+
+```js
+const showData = (id) => {
+      $.ajax({
+        method: "GET",
+        url: `${API_URL}/${id}`,
+        dataType: "json"
+
+      })
+        .done(function (rows) {
+          console.log(rows.isboolean);       
+         $('#id').val(rows.id)
+         $('#nama').val(rows.nama)
+         $('#umur').val(rows.umur)
+         $(`#isboolean option[value="${rows.isboolean}"]`).prop("selected", true);
+        })
+        .fail(function (err) {
+          console.log('error', err);
+
+        })
+    }
+```
+
 ```js
 $(document).ready(function () {
       $('#edit-form').on('click', '.btn-update', (event) => {
@@ -369,12 +394,42 @@ $(document).ready(function () {
       })
     });
 ```
+```js
 
+    const updateData = (id) => {
+      $.ajax({
+        method: "PUT",
+        url: `${API_URL}/${id}`,
+        dataType: "json",
+        data: {
+          id: id,
+          nama: $('#nama').val(),
+          umur: $('#umur').val(),
+          isboolean: $('#isboolean').val(),
+        },
 
-
-
-
-
+      })
+      .done(function (id) {
+        loadData()
+        $("#siswa-form").trigger("reset")
+      })
+      .fail(function (err) {
+       console.log('error', err);
+      })
+    }
+```
+### switch
+```js
+ const id = $("#id").val()
+      if(id){
+        updateData(id)
+      }
+      else{  ajax saveData }
+```
+* #### on form 
+```html
+<input id="id" type="hidden" value="">
+```
 
 
 
