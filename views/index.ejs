@@ -72,6 +72,7 @@
       $('table tbody').on('click', '.btn-edit', (event) => {
         showData(event.currentTarget.attributes.dataid.value);
       })
+
       $('#edit-form').on('click', '.btn-update', (event) => {
         event.preventDefault()
         updateData(event.currentTarget.attributes.dataid.value);
@@ -84,31 +85,33 @@
         url: API_URL,
         dataType: "json"
       })
-        .done(function (data) {
-          let html = '';
-          data.forEach((item) => {
-            html += `<tr>
-              <td>${item.id}</td>
-              <td>${item.nama}</td>
-              <td>${item.umur}</td>
-              <td>${item.isboolean ? "Menikah":"Jomlo"}</td>
-              <td><button class= 'btn-edit' dataid=${item.id}>EDIT</button> <button class= 'btn-delete' dataid=${item.id}>DELETE</button></td>
-              </tr>`
-          })
-          $('table tbody').html(html)
-        });
+      .done(function (data) {
+        let html = '';
+        data.forEach((item) => {
+          html += 
+          `<tr>
+            <td>${item.id}</td>
+            <td>${item.nama}</td>
+            <td>${item.umur}</td>
+            <td>${item.isboolean ? "Menikah":"Jomlo"}</td>
+            <td><button class= 'btn-edit' dataid=${item.id}>EDIT</button> <button class= 'btn-delete' dataid=${item.id}>DELETE</button></td>
+          </tr>`
+        })
+        $('table tbody').html(html)
+      });
     }
     const saveData = () => {
       const id = $("#id").val()
       if(id){
         updateData(id)
-      }else{
-      $.ajax({
-        method: "POST",
-        url: API_URL,
-        dataType: "json",
-        data: { nama: $('#nama').val(), umur: $("#umur").val(), isboolean: $('#isboolean').val() }
-      })
+      }
+      else{
+        $.ajax({
+          method: "POST",
+          url: API_URL,
+          dataType: "json",
+          data: { nama: $('#nama').val(), umur: $("#umur").val(), isboolean: $('#isboolean').val() }
+        })
         .done(function () {
           loadData()
           $("#siswa-form").trigger("reset")
@@ -126,7 +129,7 @@
         method: "DELETE",
         url: `${API_URL}/${id}`,
         dataType: "json"
-      })
+     })
         .done(function () {
           loadData()
         })
@@ -144,14 +147,13 @@
 
       })
         .done(function (rows) {
-          console.log(rows.isboolean);
-      
-     
-          $('#id').val(rows.id)
-       $('#nama').val(rows.nama)
-       $('#umur').val(rows.umur)
-       $(`#isboolean option[value="${rows.isboolean}"]`).prop("selected", true);
-        }).fail(function (err) {
+          console.log(rows.isboolean);       
+         $('#id').val(rows.id)
+         $('#nama').val(rows.nama)
+         $('#umur').val(rows.umur)
+         $(`#isboolean option[value="${rows.isboolean}"]`).prop("selected", true);
+        })
+        .fail(function (err) {
           console.log('error', err);
 
         })
@@ -170,13 +172,13 @@
         },
 
       })
-        .done(function (id) {
+      .done(function (id) {
         loadData()
-         $("#siswa-form").trigger("reset")
-        }).fail(function (err) {
-          console.log('error', err);
-
-        })
+        $("#siswa-form").trigger("reset")
+      })
+      .fail(function (err) {
+       console.log('error', err);
+      })
     }
 
   </script>

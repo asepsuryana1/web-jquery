@@ -324,8 +324,16 @@ router.put('/:id', function (req, res) {
 ```
 * ### DELETE removeData
 
-* ##### add class id
-```ejs
+* ##### event click
+```js
+ $('table tbody').on('click', '.btn-delete', (event) => {
+    removeData(event.currentTarget.attributes.dataid.value);
+  })
+
+```
+
+* ##### add class id & dataid
+```html
 <button class= 'btn-delete' dataid=${item.id}>DELETE</button></td>
 ```
 * ##### declare function
@@ -345,11 +353,21 @@ router.put('/:id', function (req, res) {
         })
       }
 ```
+* ### UPDATE updateData
 * ##### event click
 ```js
-$('table tbody').on('click', '.btn-delete',(event)=>{
-        removeData(event.currentTarget.attributes.dataid.value);
+$('#edit-form').on('click', '.btn-update', (event) => {
+        event.preventDefault()
+        updateData(event.currentTarget.attributes.dataid.value);
       })
+```
+```js
+$(document).ready(function () {
+      $('#edit-form').on('click', '.btn-update', (event) => {
+        event.preventDefault()
+        updateData(event.currentTarget.attributes.dataid.value);
+      })
+    });
 ```
 
 
